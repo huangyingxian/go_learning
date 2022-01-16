@@ -17,6 +17,12 @@ func TestSliceInit(t *testing.T) {
 	s2 = append(s2, 1)
 	t.Log(s2[0], s2[1], s2[2], s2[3])
 	t.Log(len(s2), cap(s2))
+
+	s2 = append(s2, 5)
+	t.Log(len(s2), cap(s2))
+	s2 = append(s2, 6)
+	t.Log(len(s2), cap(s2)) // 这里表明，slice 当容量不足时，会自己扩充，扩充依据是以前容量的两倍，即 *2
+
 }
 
 func TestSliceGrowing(t *testing.T) {
