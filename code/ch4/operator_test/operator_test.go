@@ -18,9 +18,14 @@ func TestCompareArray(t *testing.T) {
 	t.Log(a == d)
 }
 
+// 解释：&^ ,符号左边，0保持不变，1变为相反
 func TestBitClear(t *testing.T) {
-	a := 7 //0111
-	a = a &^ Readable
-	a = a &^ Executable
+	a := 7            //0111
+	a = a &^ Readable // 0111 &^ 0001 -> 0110
+	t.Log(Readable)
+	t.Log(a)
+	a = a &^ Executable // 0110 &^ 0100 -> 0010
+	t.Log(Executable)
+	t.Log(a)
 	t.Log(a&Readable == Readable, a&Writable == Writable, a&Executable == Executable)
 }

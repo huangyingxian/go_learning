@@ -3,7 +3,7 @@ package constant_test
 import "testing"
 
 const (
-	Monday = 1 + iota
+	Monday = 2 + iota
 	Tuesday
 	Wednesday
 )
