@@ -33,12 +33,14 @@ func TestSliceGrowing(t *testing.T) {
 	}
 }
 
+// 该测试说明，与数组一样，切片同样在使用【：】获取子切片时，是共享同一个对象的
 func TestSliceShareMemory(t *testing.T) {
 	year := []string{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",
 		"Oct", "Nov", "Dec"}
 	Q2 := year[3:6]
 	t.Log(Q2, len(Q2), cap(Q2))
 	summer := year[5:8]
+	t.Logf("%T", summer)
 	t.Log(summer, len(summer), cap(summer))
 	summer[0] = "Unknow"
 	t.Log(Q2)
