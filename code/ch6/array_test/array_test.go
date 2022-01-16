@@ -14,6 +14,7 @@ func TestArrayInit(t *testing.T) {
 	arr1[1] = 5
 	t.Log(arr[1], arr[2])
 	t.Log(arr1, arr3)
+	t.Log(len(arr1), cap(arr1))
 	if arr1 == arr2 {
 		t.Log("arr1 equear arr2")
 	} else {
