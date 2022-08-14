@@ -35,11 +35,23 @@ func TestArrayTravel(t *testing.T) {
 func TestArraySection(t *testing.T) {
 	arr3 := [...]int{1, 2, 3, 4, 5}
 	arr3_sec := arr3[:]
-	log.Print(fmt.Sprintf("arr3_sec type:%T", arr3_sec))
-	t.Log(arr3_sec) // [1 2 3 4 5]
+	t.Log(len(arr3_sec), cap(arr3_sec))
+	log.Print(fmt.Sprintf("arr3_sec type:%T", arr3_sec)) // 这里表明，获取子数组，得到的还是数组类型，而不是slice类型
+	t.Log(arr3_sec)                                      // [1 2 3 4 5]
 
 	arr3[0] = 9
 	t.Log(arr3_sec) // [9 2 3 4 5]
 	t.Log(arr3)     // [9 2 3 4 5]  这里表明，使用 array[:] 得到的数组是原来数组的引用或者说是指向，操作的是同一份数据
 
+	arr3_sec_2 := arr3[1:3]
+	t.Log(arr3_sec_2)
+	log.Print(fmt.Sprintf("arr3_sec_2 type:%T", arr3_sec_2))
+	t.Log(len(arr3_sec_2), cap(arr3_sec_2))
+	t.Log(arr3_sec_2[:cap(arr3_sec_2)])
+
+	arr3_sec_3 := arr3[0:3]
+	t.Log(arr3_sec_3)
+	log.Print(fmt.Sprintf("arr3_sec_3 type:%T", arr3_sec_3))
+	t.Log(len(arr3_sec_3), cap(arr3_sec_3))
+	t.Log(arr3_sec_3[:cap(arr3_sec_3)]) // arr3_sec_2 与 arr3_sec_3 这里两次实验表明，子数组，容量是： 父数组的长度-开始窃取的下标
 }
