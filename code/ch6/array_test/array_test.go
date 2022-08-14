@@ -20,6 +20,7 @@ func TestArrayInit(t *testing.T) {
 	} else {
 		t.Log("arr1 not equear arr2")
 	}
+	t.Log(fmt.Sprintf("%T", arr1))
 }
 
 func TestArrayTravel(t *testing.T) {
