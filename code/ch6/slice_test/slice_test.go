@@ -1,6 +1,9 @@
 package slice_test
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestSliceInit(t *testing.T) {
 	var s0 []int
@@ -16,6 +19,7 @@ func TestSliceInit(t *testing.T) {
 	t.Log(s2[0], s2[1], s2[2])
 	s2 = append(s2, 1)
 	t.Log(s2[0], s2[1], s2[2], s2[3])
+	t.Log(s2[:cap(s2)])
 	t.Log(len(s2), cap(s2))
 
 	s2 = append(s2, 5)
@@ -29,7 +33,7 @@ func TestSliceGrowing(t *testing.T) {
 	s := []int{}
 	for i := 0; i < 10; i++ {
 		s = append(s, i)
-		t.Log(len(s), cap(s))
+		t.Log(len(s), cap(s)) // 这里表明，slice 当容量不足时，会自己扩充，扩充依据是以前容量的两倍，即 *2，这里更加显而易见
 	}
 }
 
@@ -54,4 +58,5 @@ func TestSliceComparing(t *testing.T) {
 	// 	t.Log("equal")
 	// }
 	t.Log(a, b)
+	t.Log(fmt.Sprintf("%T", b))
 }
